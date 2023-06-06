@@ -16,11 +16,18 @@ public class UserData {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long userId;
 
+    @Column(name="email")
     private String email;
 
     private String password;
 
     private String phoneNumber;
+
+    @OneToOne(mappedBy = "userEmployee")
+    private Employee employee;
+
+    @OneToOne(mappedBy = "userStudent")
+    private Student student;
 
 
 
