@@ -1,6 +1,8 @@
 package com.atelier04.booking.controllers;
 
 import com.atelier04.booking.models.UserData;
+import com.atelier04.booking.services.UserDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/test")
 public class UserController {
-
-
+    @Autowired
+    UserDataService userDataService;
     @GetMapping(value = "/student")
     public ResponseEntity<String> test(){
         return  new ResponseEntity<>("Hallo von BookingController",HttpStatus.OK);
@@ -17,7 +19,13 @@ public class UserController {
     @GetMapping(value = "/login")
     public ResponseEntity<UserData> login(@RequestBody UserData userData){
 
+
+
         return  new ResponseEntity<>(userData,HttpStatus.OK);
+    }
+    @GetMapping("/register")
+    public ResponseEntity<UserData> register(@RequestBody UserData userData){
+        return ResponseEntity.ok(userDataService.save(userData));
     }
 
 }

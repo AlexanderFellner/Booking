@@ -23,7 +23,7 @@ public class SecurityConfig {
 
                 .requestMatchers("test/**").permitAll()
                 .requestMatchers("**")
-                .authenticated().and().formLogin(auth->auth.loginPage("/test/login")).build();
+                .authenticated().and().build();
 
     }
 }
