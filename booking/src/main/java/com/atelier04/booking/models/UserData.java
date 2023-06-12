@@ -3,9 +3,10 @@ package com.atelier04.booking.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -29,6 +30,8 @@ public class UserData {
     @OneToOne(mappedBy = "userStudent")
     private Student student;
 
+    @OneToMany(mappedBy="userData")
+    private Set<Booking> bookings=new HashSet<>();
 
 
 

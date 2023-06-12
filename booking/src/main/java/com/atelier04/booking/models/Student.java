@@ -6,8 +6,7 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
 @Entity
 @Table(name="students")
@@ -15,7 +14,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long StudentId;
+    private Long studentId;
     @OneToOne
     @JoinColumn(name="userIdtest",referencedColumnName = "userId")
     private UserData userStudent;

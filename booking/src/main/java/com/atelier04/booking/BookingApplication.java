@@ -1,6 +1,6 @@
 package com.atelier04.booking;
 
-import com.atelier04.booking.models.UserData;
+
 import com.atelier04.booking.repositories.UserDataRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,11 +14,11 @@ public class BookingApplication implements CommandLineRunner {
 		SpringApplication.run(BookingApplication.class, args);
 	}
 	@Autowired
-    private UserDataRepo userDataRepo;
+	private UserDataRepo userDataRepo;
 	@Override
 	public void run(String... args) {
-		UserData user1=UserData.builder().email("alexander.fellner@yahoo.de").password("test").phoneNumber("06505092540").build();
 
-		userDataRepo.save(user1);
+
+
 	}
 }

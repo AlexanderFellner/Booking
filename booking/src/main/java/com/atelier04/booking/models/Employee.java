@@ -5,8 +5,6 @@ import lombok.*;
 
 @Entity
 @Data
-@Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,12 +13,19 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long EmployeeId;
+    private Long employeeId;
 
     private String insurancenumber;
 
     @OneToOne
     @JoinColumn(name="userId",referencedColumnName = "userId")
     private UserData userEmployee;
+
+    @OneToOne(mappedBy = "employee")
+    private Admin admin;
+
+    @OneToOne(mappedBy = "lectureEmployee")
+    private Lecture lecture;
+
 
 }
