@@ -20,23 +20,23 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long roomId;
 
-    private String smartBoard;
+    private boolean smartBoard;
 
-    private String whiteBoard;
+    private boolean whiteBoard;
 
-    private String audio;
+    private boolean audio;
 
-    private String projector;
+    private boolean projector;
 
-    private String printer;
+    private boolean printer;
 
     private Set<String> seats=new HashSet<>();
 
-    private String section;
+    private boolean section;
 
-    private String country;
+    private boolean country;
 
-    private String directions;
+    private boolean directions;
 
     @OneToOne(mappedBy = "bookingRoom")
     private Booking booking;

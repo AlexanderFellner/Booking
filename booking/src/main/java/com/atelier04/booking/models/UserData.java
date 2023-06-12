@@ -24,13 +24,13 @@ public class UserData {
 
     private String phoneNumber;
 
-    @OneToOne(mappedBy = "userEmployee")
+    @OneToOne(mappedBy = "userEmployee", cascade=CascadeType.ALL)
     private Employee employee;
 
-    @OneToOne(mappedBy = "userStudent")
+    @OneToOne(mappedBy = "userStudent",cascade=CascadeType.ALL)
     private Student student;
 
-    @OneToMany(mappedBy="userData")
+    @OneToMany(mappedBy="userData",cascade=CascadeType.ALL)
     private Set<Booking> bookings=new HashSet<>();
 
 

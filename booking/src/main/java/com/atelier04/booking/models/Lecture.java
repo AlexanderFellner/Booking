@@ -24,14 +24,14 @@ public class Lecture {
     private LocalDateTime endLecture;
 
     @OneToOne()
-    @JoinColumn(name="room_id",referencedColumnName = "roomId")
+    @JoinColumn(name="roomid",referencedColumnName = "roomId")
     private Room lectureRoom;
 
     @OneToOne
-    @JoinColumn(name="booking_id",referencedColumnName = "bookingId")
+    @JoinColumn(name="bookingid",referencedColumnName = "bookingId")
     private Booking lectureBooking;
 
     @OneToOne
-    @JoinColumn(name="employee_id",referencedColumnName = "employeeId")
+    @JoinColumn(name="employeeid",referencedColumnName = "employeeId")
     private Employee lectureEmployee;
 }

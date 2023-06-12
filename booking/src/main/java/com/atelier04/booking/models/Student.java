@@ -16,7 +16,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long studentId;
     @OneToOne
-    @JoinColumn(name="userIdtest",referencedColumnName = "userId")
+    @JoinColumn(name="userId",referencedColumnName = "userId")
     private UserData userStudent;
 
 }

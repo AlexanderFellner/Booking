@@ -19,18 +19,22 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bookingId;
 
-    private LocalDateTime localDateTime;
+    private LocalDateTime bookingTime;
+
+    private LocalDateTime endTime;
 
     @ManyToOne
     @JoinColumn(name="userId",referencedColumnName = "userId")
     private UserData userData;
 
     @OneToOne
-    @JoinColumn(name="room_id",referencedColumnName = "roomId")
+    @JoinColumn(name="roomid",referencedColumnName = "roomId")
     private Room bookingRoom;
 
     @OneToOne(mappedBy = "lectureBooking")
     private Lecture lecture;
+
+
 
 
 

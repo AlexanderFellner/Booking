@@ -16,7 +16,7 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long adminId;
     @OneToOne
-    @JoinColumn(name="employee_id",referencedColumnName = "employeeId")
+    @JoinColumn(name="employeeid",referencedColumnName = "employeeId")
     private Employee employee;
 
 
