@@ -1,5 +1,6 @@
 package com.atelier04.booking.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +37,7 @@ public class Room {
     private int seats;
 
     private String section;
+
 
     private String category;
 

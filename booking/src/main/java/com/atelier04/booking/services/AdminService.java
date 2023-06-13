@@ -25,8 +25,8 @@ public class AdminService {
         lectureService.deleteLecture(lecture);
     }
 
-    public Room addRoom(boolean smartBoard, boolean whiteBoard,boolean audio, boolean projector, boolean printer, int seats,String section, String country, String directions) {
-        return roomService.addRoom(smartBoard,whiteBoard,audio,projector,printer,seats,section,country,directions);
+    public Room addRoom(String name,boolean smartBoard, boolean whiteBoard,boolean audio, boolean projector, boolean printer, int seats,String section, String country, String directions) {
+        return roomService.addRoom(name,smartBoard,whiteBoard,audio,projector,printer,seats,section,country,directions);
 
     }
 }

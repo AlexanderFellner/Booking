@@ -18,6 +18,12 @@ public class RoomService {
     @Autowired
     private BookingService bookingService;
 
+
+    public Optional<Room> getRoomById(Long id){
+        Optional<Room> roomopt=roomRepo.findById(id);
+        return roomopt;
+    }
+
     public List<Room> getAllRooms(){
 
         return roomRepo.findAll();
@@ -27,8 +33,8 @@ public class RoomService {
         return bookingService.getFreeRooms();
     }
 
-    public Room addRoom(boolean smartBoard, boolean whiteBoard,boolean audio, boolean projector, boolean printer, int seats,String section, String country, String directions){
-         Room room=Room.builder().smartBoard(smartBoard).whiteBoard(whiteBoard).audio(audio).projector(projector).printer(printer).category(country).seats(seats).section(section).directions(directions).build();
+    public Room addRoom(String name,boolean smartBoard, boolean whiteBoard,boolean audio, boolean projector, boolean printer, int seats,String section, String category, String directions){
+         Room room=Room.builder().name(name).smartBoard(smartBoard).whiteBoard(whiteBoard).audio(audio).projector(projector).printer(printer).category(category).seats(seats).section(section).directions(directions).build();
          return roomRepo.save(room);
     }
     public void deleteRoomByName(String name){

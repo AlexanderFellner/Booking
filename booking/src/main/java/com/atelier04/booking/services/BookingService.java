@@ -19,10 +19,20 @@ public class BookingService {
 
     public List<Room> getFreeRooms(){
         List<Booking> bookings=bookingRepo.findAll();
-        return bookings.stream().map(Booking::getBookingRoom).filter(room->LocalDateTime.now().plusHours(3).isAfter(room.getBooking().getEndTime() )|| LocalDateTime.now().plusHours(3).isBefore(room.getBooking().getBookingTime())).collect(Collectors.toList());
+        return bookings.stream().map(Booking::getBookingRoom).filter(room->LocalDateTime.now().plusHours(3).isAfter(room.getBooking().getEndTime() ) && LocalDateTime.now().plusHours(3).isBefore(room.getBooking().getBookingTime())).collect(Collectors.toList());
 
 
     }
+    public boolean addBooking(Room room){
+        Booking booking=new Booking();
+        booking.setBookingTime(LocalDateTime.now());
+        booking.setEndTime(LocalDateTime.now().plusHours(2));
+        booking.setBookingRoom(room);
+        bookingRepo.save(booking);
+
+        return true;
+    }
+
 
 
 }
