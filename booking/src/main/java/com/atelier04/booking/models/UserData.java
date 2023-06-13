@@ -31,6 +31,8 @@ public class UserData {
     @OneToMany(mappedBy="userData",cascade=CascadeType.ALL)
     private Set<Booking> bookings=new HashSet<>();
 
+    private Set<String> roles=new HashSet<>();
+
 
 
 }

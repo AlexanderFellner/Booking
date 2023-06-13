@@ -28,7 +28,7 @@ public class RoomService {
     }
 
     public Room addRoom(boolean smartBoard, boolean whiteBoard,boolean audio, boolean projector, boolean printer, int seats,String section, String country, String directions){
-         Room room=Room.builder().smartBoard(smartBoard).whiteBoard(whiteBoard).audio(audio).projector(projector).printer(printer).country(country).seats(seats).section(section).directions(directions).build();
+         Room room=Room.builder().smartBoard(smartBoard).whiteBoard(whiteBoard).audio(audio).projector(projector).printer(printer).category(country).seats(seats).section(section).directions(directions).build();
          return roomRepo.save(room);
     }
     public void deleteRoomByName(String name){

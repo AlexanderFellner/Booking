@@ -37,7 +37,7 @@ public class Room {
 
     private String section;
 
-    private String country;
+    private String category;
 
     private String directions;
 
