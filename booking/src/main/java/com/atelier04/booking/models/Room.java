@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
+
+
 
 @Entity
 @Data
@@ -20,6 +20,9 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long roomId;
 
+    @Column(name="name",unique = true)
+    private String name;
+
     private boolean smartBoard;
 
     private boolean whiteBoard;
@@ -30,13 +33,13 @@ public class Room {
 
     private boolean printer;
 
-    private Set<String> seats=new HashSet<>();
+    private int seats;
 
-    private boolean section;
+    private String section;
 
-    private boolean country;
+    private String country;
 
-    private boolean directions;
+    private String directions;
 
     @OneToOne(mappedBy = "bookingRoom")
     private Booking booking;
