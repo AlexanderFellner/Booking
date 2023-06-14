@@ -1,6 +1,7 @@
 package com.atelier04.booking.controllers;
 
 import com.atelier04.booking.auth.JwtUtil;
+import com.atelier04.booking.dto.RoomRequest;
 import com.atelier04.booking.models.Room;
 import com.atelier04.booking.models.UserData;
 import com.atelier04.booking.services.BookingService;
@@ -59,26 +60,16 @@ public class UserController {
     }
     @GetMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserData userData){
-        UserData userDataSaved=userDataService.save(userData);
-        UserDetails userDetails=jwtDetailsService.loadUserByUsername(userDataSaved.getEmail());
-        final String jwt=jwtUtil.generateToken(userDetails);
-        return new ResponseEntity<String>(jwt,HttpStatus.OK);
+       userDataService.save(userData);
+       // UserDetails userDetails=jwtDetailsService.loadUserByUsername(userDataSaved.getEmail());
+        //final String jwt=jwtUtil.generateToken(userDetails);
+        return new ResponseEntity<String>("eintrag",HttpStatus.OK);
     }
     @GetMapping("/freerooms")
     public ResponseEntity<List<Room>> getFreeRooms(){
         return  ResponseEntity.ok(userDataService.getFreeRooms());
     }
-    @PostMapping("/addroom")
-    public ResponseEntity<String> addRoom(@RequestBody Room room){
 
-        Room room1=roomService.addRoom(room.getName(),room.isSmartBoard(),room.isWhiteBoard(),room.isAudio(),room.isProjector(),room.isPrinter(),room.getSeats(),room.getSection(),room.getCategory(),room.getDirections());
-        Optional optroom=Optional.of(room1);
-        if(optroom.isPresent()){
-            return ResponseEntity.ok("Room was created");
-        }
-        return ResponseEntity.ok("Room was not created");
-        //return ResponseEntity.status(HttpStatusCode.valueOf(500)).body("Room was not created");
-    }
     @PostMapping("/addbooking/{roomName}")
     public ResponseEntity<String> addBooking(@PathVariable String roomName ){
 
@@ -103,5 +94,33 @@ public class UserController {
     public ResponseEntity<Room> getRoomByEmployee(@PathVariable  String employeename){
         return ResponseEntity.<Room>ok(roomService.getRoomByEmployee(employeename));
     }
+    @GetMapping("/getallrooms")
+    public ResponseEntity<List<Room>> getAllRooms(){
+        return ResponseEntity.ok(roomService.getAllRooms());
+    }
+    @DeleteMapping("/deleteroom/{roomName}")
+    public ResponseEntity<String> deleteRoom(@PathVariable String roomName){
+        boolean deleted=roomService.deleteRoomByName(roomName);
+        return deleted ? ResponseEntity.ok("The room was successfully deleted"): ResponseEntity.ok("The room was not successfully deleted");
+
+    }
+    @PostMapping("/addroom")
+    public ResponseEntity<String> addRoom(@RequestBody Room room){
+
+        Room room1=roomService.addRoom(room.getName(),room.isSmartBoard(),room.isWhiteBoard(),room.isAudio(),room.isProjector(),room.isPrinter(),room.getSeats(),room.getSection(),room.getCategory(),room.getDirections());
+        Optional optroom=Optional.of(room1);
+        if(optroom.isPresent()){
+            return ResponseEntity.ok("Room was created");
+        }
+        return ResponseEntity.ok("Room was not created");
+        //return ResponseEntity.status(HttpStatusCode.valueOf(500)).body("Room was not created");
+    }
+    @PostMapping("/updateRoom")
+    public ResponseEntity<Room> updateRoom(@RequestBody RoomRequest roomRequest){
+        Room room= roomService.updateRoom(roomRequest.roomName(),roomRequest.smartBoard(),roomRequest.whiteBoard(),roomRequest.audio(),roomRequest.projector(),
+                 roomRequest.printer(),roomRequest.seats(),roomRequest.section(),roomRequest.category(),roomRequest.directions() );
+        return ResponseEntity.ok(room);
+    }
+
 
 }
