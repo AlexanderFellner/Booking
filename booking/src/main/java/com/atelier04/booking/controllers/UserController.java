@@ -48,13 +48,14 @@ public class UserController {
         return  new ResponseEntity<>("Hallo von BookingController",HttpStatus.OK);
     }
     @GetMapping(value = "/login")
-    public ResponseEntity<UserData> login(@RequestBody UserData userData){
+    public ResponseEntity<String> login(@RequestBody UserData userData){
      Authentication authentication= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userData.getEmail(),userData.getPassword()));
      if(!authentication.isAuthenticated()){
         return ResponseEntity.status(HttpStatusCode.valueOf(403)).build();
      }
-
-        return  new ResponseEntity<>(userData,HttpStatus.OK);
+     UserDetails userDetails=jwtDetailsService.loadUserByUsername(userData.getEmail());
+     String jwt=jwtUtil.generateToken(userDetails);
+     return  new ResponseEntity<>(jwt,HttpStatus.OK);
     }
     @GetMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserData userData){
