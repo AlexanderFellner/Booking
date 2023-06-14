@@ -24,6 +24,9 @@ public class EmployeeService {
        return employeeRepo.findById(id);
 
     }
+    public Optional<Employee> getEmployeeByName(String name){
+        return employeeRepo.findByName(name);
+    }
 
     public Optional<Lecture> getLectureByEmployee(Employee employee){
 

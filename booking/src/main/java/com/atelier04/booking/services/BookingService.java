@@ -28,9 +28,11 @@ public class BookingService {
         booking.setBookingTime(LocalDateTime.now());
         booking.setEndTime(LocalDateTime.now().plusHours(2));
         booking.setBookingRoom(room);
-        bookingRepo.save(booking);
-
-        return true;
+        Booking savedBooking=bookingRepo.save(booking);
+        if(savedBooking!=null){
+            return true;
+        }
+        return false;
     }
 
 

@@ -17,6 +17,9 @@ public class Employee {
 
     private String insurancenumber;
 
+    @Column(name="name",unique = true)
+    private String name;
+
     @OneToOne
     @JoinColumn(name="userId",referencedColumnName = "userId")
     private UserData userEmployee;

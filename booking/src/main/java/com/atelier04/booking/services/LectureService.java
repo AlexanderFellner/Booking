@@ -20,6 +20,9 @@ public class LectureService {
             return lectureRepo.findAll();
 
     }
+    public Optional<Lecture> getLectureByName(String name){
+        return lectureRepo.findByName(name);
+    }
 
     public Optional<Lecture> getLectureById(Long id){
             return lectureRepo.findById(id);

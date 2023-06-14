@@ -19,6 +19,9 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lectureId;
 
+    @Column(name="name",unique = true)
+    private String name;
+
     private LocalDateTime startLecture;
 
     private LocalDateTime endLecture;
